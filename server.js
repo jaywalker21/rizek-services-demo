@@ -1,45 +1,48 @@
-require('dotenv').config();
+require("dotenv").config();
 
-import * as CommuteService from './src/service/commute-service';
+import * as CommuteService from "./src/service/commute-service";
 
 /**
  * This is the main Node.js server script for your project
  * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
  */
 
-const path = require('path');
+const path = require("path");
 
 // Require the fastify framework and instantiate it
-const fastify = require('fastify')({
+const fastify = require("fastify")({
   // Set this to true for detailed logging:
   logger: true
 });
 
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
+fastify.register(require("fastify-cors"), instance => (req, callback) => {
+  const corsOptions = { origin: true };
+  callback(null, corsOptions); // callback expects two parameters: error and options
+});
 
 // Setup our static files
-fastify.register(require('fastify-static'), {
-  root: path.join(__dirname, 'public'),
-  prefix: '/' // optional: default '/'
+fastify.register(require("fastify-static"), {
+  root: path.join(__dirname, "public"),
+  prefix: "/" // optional: default '/'
 });
 
 // fastify-formbody lets us parse incoming forms
-fastify.register(require('fastify-formbody'));
+fastify.register(require("fastify-formbody"));
 
 /**
  * Our home page route
  *
  * returns hello world
  */
-fastify.get('/', function(request, reply) {
-  reply.send({ hello: 'world' });
+fastify.get("/", function(request, reply) {
+  reply.send({ hello: "world" });
 });
 
-fastify.get('/locations', function(request, reply) {
+fastify.get("/locations", function(request, reply) {
   reply.send(CommuteService.getDistinctLocations());
 });
 
-fastify.get('/getBestMatchingDeals', function(request, reply) {
+fastify.get("/getBestMatchingDeals", function(request, reply) {
   const {
     query: { from, to, type }
   } = request;
