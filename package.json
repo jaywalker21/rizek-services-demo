@@ -1,0 +1,24 @@
+{
+  "name": "rizek-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.14.1",
+    "fastify-formbody": "^5.0.0",
+    "fastify-static": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.14.9"
+  },
+  "scripts": {
+    "start": "babel-node server.js",
+    "test": "npm run test"
+  },
+  "author": "",
+  "license": "ISC"
+}
