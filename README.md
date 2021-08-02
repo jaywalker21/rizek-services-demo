@@ -9,7 +9,7 @@
 
 ## Future Scope
 
-- Unit Test Cases and robust testing. 
+- Unit and Integration Test Cases and robust testing. 
 - Code Cleanup and organization
 - Make error logic more generic and reusable.
 - Use `nodemon` and `pm2` config setup for future deployment/hosting purpose.
